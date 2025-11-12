@@ -1,4 +1,5 @@
 # 🎬 Perso.ai 지식기반 챗봇
+<img width="1143" height="657" alt="스크린샷 2025-11-12 오후 4 44 28" src="https://github.com/user-attachments/assets/c3408495-c967-4eb8-a124-422dd6307f8b" />
 
 벡터 데이터베이스(Vector DB)를 활용한 Perso.ai Q&A 챗봇 시스템
 
@@ -116,7 +117,92 @@ python embed_data.py
 **출력 결과:**
 
 ```
-[실행 결과 스크린샷 자리]
+(persoai-chatbot) hs@griotoldui-MacBookAir persoai-chatbot % python embed_data.py
+================================================================================
+🚀 Perso.ai Q&A 임베딩 스크립트
+================================================================================
+
+[STEP 1] 📂 데이터 로딩 중...
+✅ 파일 로드 완료: data/qa_data.xlsx
+📊 전체 행 수: 29
+
+=== 데이터 미리보기 (처음 10행) ===
+                            0  ...                                                  2
+0  [ESTSoft] 바이브 코딩 인턴 과제 데이터  ...                                                NaN
+1                         NaN  ...                                                NaN
+2                         NaN  ...                                               내  용
+3                         NaN  ...                            Q. Perso.ai는 어떤 서비스인가요?
+4                         NaN  ...  A. Perso.ai는 이스트소프트가 개발한 다국어 AI 영상 더빙 플랫폼으로, 누...
+5                         NaN  ...                         Q. Perso.ai의 주요 기능은 무엇인가요?
+6                         NaN  ...  A. Perso.ai는 AI 음성 합성, 립싱크, 영상 더빙 기능을 제공합니다. 사...
+7                         NaN  ...                         Q. Perso.ai는 어떤 기술을 사용하나요?
+8                         NaN  ...  A. Perso.ai는 ElevenLabs, Microsoft, Google Clo...
+9                         NaN  ...                        Q. Perso.ai의 사용자는 어느 정도인가요?
+
+[10 rows x 3 columns]
+
+=== 데이터 미리보기 (마지막 10행) ===
+      0    1                                                  2
+19  NaN    9                               Q. 이스트소프트는 어떤 회사인가요?
+20  NaN  NaN  A. 이스트소프트는 1993년에 설립된 IT 기업으로, 알집, 알약, 알씨 등 생활...
+21  NaN   10                        Q. Perso.ai의 기술적 강점은 무엇인가요?
+22  NaN  NaN  A. AI 음성 합성과 립싱크 정확도가 높고, 다국어 영상 제작이 간편하며, 실제 ...
+23  NaN   11                    Q. Perso.ai를 사용하려면 회원가입이 필요한가요?
+24  NaN  NaN   A. 네, 이메일 또는 구글 계정으로 간단히 회원가입 후 서비스를 이용할 수 있습니다.
+25  NaN   12                Q. Perso.ai를 이용하려면 영상 편집 지식이 필요한가요?
+26  NaN  NaN  A. 아니요. Perso.ai는 누구나 쉽게 사용할 수 있도록 설계되어 있어, 영상...
+27  NaN   13                       Q. Perso.ai 고객센터는 어떻게 문의하나요?
+28  NaN  NaN  A. Perso.ai 웹사이트 하단의 ‘문의하기’ 버튼을 통해 이메일 또는 채팅으로...
+
+[STEP 2] 🔍 Q&A 파싱 중...
+✅ 파싱 완료: 13개의 Q&A 쌍
+
+=== 파싱된 Q&A 데이터 확인 ===
+
+[1]
+Q: Q. Perso.ai는 어떤 서비스인가요?
+A: A. Perso.ai는 이스트소프트가 개발한 다국어 AI 영상 더빙 플랫폼으로, 누구나 언어의 장벽 없이 영상을 제작하고 공유할 수 있도록 돕는...
+
+[2]
+Q: Q. Perso.ai의 주요 기능은 무엇인가요?
+A: A. Perso.ai는 AI 음성 합성, 립싱크, 영상 더빙 기능을 제공합니다. 사용자는 원본 영상에 다른 언어로 음성을 입히거나, 입 모양까지...
+
+[3]
+Q: Q. Perso.ai는 어떤 기술을 사용하나요?
+A: A. Perso.ai는 ElevenLabs, Microsoft, Google Cloud Speech API 등과 같은 글로벌 기술 파트너의 음성...
+
+... (나머지 10개 생략)
+
+[STEP 3] 📝 Document 객체 생성 중...
+✅ Document 생성 완료: 13개
+
+[STEP 4] 🚀 Pinecone에 임베딩 중...
+✅ 인덱스 확인: persoai-index
+⏳ 임베딩 중... (약 10-20초 소요)
+✅ 임베딩 완료! 13개의 문서가 Pinecone에 저장되었습니다.
+
+[STEP 5] 🔍 임베딩 검증 중...
+
+=== 검증 테스트 ===
+
+📝 테스트 쿼리: 'Perso.ai는 무엇인가요?'
+✅ 검색 결과 2개 발견
+   가장 유사한 질문: Q. Perso.ai는 어떤 기업이 개발했나요?
+
+📝 테스트 쿼리: '지원하는 언어는?'
+✅ 검색 결과 2개 발견
+   가장 유사한 질문: Q. Perso.ai는 어떤 기술을 사용하나요?
+
+📝 테스트 쿼리: '요금제는 어떻게 되나요?'
+✅ 검색 결과 2개 발견
+   가장 유사한 질문: Q. Perso.ai의 요금제는 어떻게 구성되어 있나요?
+
+✅ 검증 완료!
+
+================================================================================
+🎉 완료! 이제 챗봇을 실행할 수 있습니다.
+💡 실행 명령어: streamlit run chat.py
+================================================================================
 ```
 
 > 13개의 Q&A가 성공적으로 파싱되고, Pinecone에 임베딩되었습니다.
@@ -137,10 +223,8 @@ Pinecone 콘솔에서 `persoai-index` 인덱스를 생성했습니다:
 - **Region**: `us-east-1`
 
 **Pinecone 콘솔 스크린샷:**
+<img width="1456" height="761" alt="스크린샷 2025-11-12 오후 4 00 06" src="https://github.com/user-attachments/assets/7dd6823a-7849-4ee3-95d2-b3a29b88a573" />
 
-```
-[Pinecone 인덱스 생성 스크린샷 자리]
-```
 
 ### 2. 임베딩 코드
 
@@ -238,6 +322,7 @@ history_aware_retriever = create_history_aware_retriever(
 ```
 
 ### 3. 동작 예시
+<img width="1143" height="657" alt="스크린샷 2025-11-12 오후 4 44 28" src="https://github.com/user-attachments/assets/997bd97d-490d-4598-95db-42e4d92d5951" />
 
 **대화 흐름:**
 ```
@@ -274,10 +359,7 @@ system_prompt = (
 **응답:** "제공된 정보에서는 해당 내용을 찾을 수 없습니다."
 
 **할루시네이션 방지 스크린샷:**
-
-```
-[할루시네이션 테스트 스크린샷 자리]
-```
+<img width="1138" height="622" alt="스크린샷 2025-11-12 오후 4 44 39" src="https://github.com/user-attachments/assets/73d15993-9982-482d-8c50-6ea9f9c97bbb" />
 
 > 데이터에 없는 정보에 대해서는 지어내지 않고, 명확히 "모른다"고 답변합니다.
 
@@ -347,30 +429,6 @@ persoai-chatbot/
 | **기술 설계** | 30% | RAG 아키텍처, Few-shot Prompting, 대화 맥락 관리 |
 | **완성도** | 20% | Streamlit UI, Streamlit Cloud 배포, 안정적 동작 |
 | **문서/논리성** | 10% | README.md, 코드 주석, 명확한 기술 선택 근거 |
-
----
-
-## 🔧 트러블슈팅
-
-### 1. Pinecone 연결 오류
-```bash
-# API 키 확인
-echo $PINECONE_API_KEY
-```
-
-### 2. OpenAI Rate Limit
-- 무료 크레딧 또는 소액 과금($5) 권장
-- Gemini API로 대체 가능
-
-### 3. Streamlit 배포 오류
-- `requirements.txt`에 모든 패키지 포함 확인
-- `.streamlit/config.toml` 설정 확인
-
----
-
-## 📄 라이선스
-
-MIT License
 
 ---
 
